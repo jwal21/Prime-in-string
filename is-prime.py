@@ -1,3 +1,4 @@
+# Function that checks if a number is prime
 def is_prime(n) -> bool:
     
     # Checks if less than 2 as negative numbers, 0 and 1 are not prime
@@ -21,15 +22,13 @@ def is_prime(n) -> bool:
         mod += 6
     return True
 
-# Run the function
-if __name__ == '__main__':
-    # Takes a binary string from the user
-    string = (input("Enter a binary string: "))
 
+# Function that gets all substrings of a binary string and converts into decimal and finally checks if the number is prime.
+def binary_to__decimal(string):
     # Checks if the string is a valid binary string
     if not all(s in '01' for s in string):
-            print("Invalid binary string")
-            exit()
+        print("Invalid binary string")
+        exit()
     
     # Set to store all the substrings of the binary string
     substrings = set()
@@ -47,6 +46,13 @@ if __name__ == '__main__':
 
         # Checks if the decimal value is prime AND if it has not already been added to the seen_prime set, then prints the decimal value
         if is_prime(decimal_value) and decimal_value not in seen_prime:
-           seen_prime.add(decimal_value)
+            seen_prime.add(decimal_value)
            
-    print(f"The binary string '{string}' \nContains {len(seen_prime)} prime numbers: {sorted(seen_prime)}")
+    return (f"The binary string '{string}' \nContains {len(seen_prime)} prime numbers: {sorted(seen_prime)}")
+
+
+# Main function that runs the functions
+if __name__ == '__main__':
+    # Takes a binary string from the user
+    string = (input("Enter a binary string: "))
+    print(binary_to__decimal(string))
