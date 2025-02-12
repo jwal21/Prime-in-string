@@ -1,44 +1,54 @@
 # Function that checks if a number is prime
-def is_prime(n) -> bool:
+cached_nums: dict[int, bool] = {}
+
+def is_prime(n: int) -> bool:
     
     # Checks if less than 2 as negative numbers, 0 and 1 are not prime
     if n < 2:
+        cached_nums[n] = False
         return False
     
     # Checks if the number is 2 or 3 as these have no other factors
-    if n in (2, 3):
+    if n in (2, 3):#
+        cached_nums[n] = True
         return True
     
     # Checks if even or divisible by 3
     if n % 2 == 0 or n % 3 == 0:
+        cached_nums[n] = False
         return False
     
-    # Check for divisibility by 6k +/- 1 as all primes (besides 2 and 3) are either one less or one more than a multiple of 6
-    mod = 5
+    # Check for divisibility by 6k +/- 1 as all primes
+    # (besides 2 and 3) are either one less or one more than a multiple of 6
+    
+    mod: int = 5
     while mod ** 2 <= n:
         # Checks divisibility one less and one more than a multiple of 6
         if n % mod  == 0 or n % (mod + 2) == 0:
+            cached_nums[n] = False
             return False
         mod += 6
+    
+    cached_nums[n] = True
     return True
 
 
 # Function that gets all substrings of a binary string and converts into decimal and finally checks if the number is prime.
-def binary_to__decimal(string):
+def binary_to__decimal(string: str) -> str:
     # Checks if the string is a valid binary string
     if not all(s in '01' for s in string):
         print("Invalid binary string")
         exit()
     
     # Set to store all the substrings of the binary string
-    substrings = set()
+    substrings: set[str] = set()
     # Loop that will slice the string into all possible substrings and add them to the set
     for i in range(len(string)):
         for j in range(i + 1, len(string) + 1):
             substrings.add(string[i:j])
     
     # Set to store the prime numbers we have identified, but not including duplicates
-    seen_prime = set()
+    seen_prime: set[int] = set()
 
     # Converting each binary substring from the substrings set into decimal
     for substring in substrings: 
