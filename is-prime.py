@@ -39,8 +39,7 @@ def is_prime(n: int) -> bool:
 def binary_to__decimal(string: str, max_num: int) -> str:
     # Checks if the string is a valid binary string
     if not all(s in '01' for s in string):
-        print("Invalid binary string")
-        exit()
+        return "Invalid binary string"
     
     # Set to store all the substrings of the binary string
     substrings: set[str] = set()
@@ -58,7 +57,7 @@ def binary_to__decimal(string: str, max_num: int) -> str:
 
         # Checks if the decimal value is prime AND if it has not already been added to the seen_prime set, then prints the decimal value
         if is_prime(decimal_value) and decimal_value not in seen_prime:
-            if decimal_value > int(max_num):
+            if decimal_value > (max_num):
                 break
             seen_prime.add(decimal_value)
 
@@ -82,5 +81,5 @@ if __name__ == '__main__':
    
     string = input("Enter a binary string: ")
     # Takes the maximum cut off value for the prime numbers
-    max_num = input ("Enter the maximum value prime number: ")
+    max_num = int( input ("Enter the maximum value prime number: "))
     print(binary_to__decimal(string, max_num))
