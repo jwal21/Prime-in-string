@@ -1,6 +1,8 @@
-# Function that checks if a number is prime
+# Cache of numbers that have already been checked for primality
+# Dictionary (Hash Table)
 cached_nums: dict[int, bool] = {}
 
+# Function that checks if a number is prime
 def is_prime(n: int) -> bool:
     
     # Checks if less than 2 as negative numbers, 0 and 1 are not prime
@@ -9,7 +11,7 @@ def is_prime(n: int) -> bool:
         return False
     
     # Checks if the number is 2 or 3 as these have no other factors
-    if n in (2, 3):#
+    if n in (2, 3):
         cached_nums[n] = True
         return True
     
@@ -56,13 +58,19 @@ def binary_to__decimal(string: str) -> str:
 
         # Checks if the decimal value is prime AND if it has not already been added to the seen_prime set, then prints the decimal value
         if is_prime(decimal_value) and decimal_value not in seen_prime:
+            if decimal_value > int(max_num):
+                break
             seen_prime.add(decimal_value)
-           
-    return (f"The binary string '{string}' \nContains {len(seen_prime)} prime numbers: {sorted(seen_prime)}")
 
+    if len(seen_prime) < 6:
+        return f"\nThe binary string '{string}': \nContains {len(seen_prime)} prime numbers: {sorted(seen_prime)}"
+    else:
+        return f"\nFor the binary string '{string}', the 3 smallest prime numbers are {sorted(seen_prime)[:3]} and the 3 largest prime numbers are {sorted(seen_prime)[-3:]}"
 
 # Main function that runs the functions
 if __name__ == '__main__':
     # Takes a binary string from the user
-    string = (input("Enter a binary string: "))
+    string = input("Enter a binary string: ")
+    # Takes the maximum cut off value for the prime numbers
+    max_num = input ("Enter the maximum value prime number: ")
     print(binary_to__decimal(string))
