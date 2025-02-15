@@ -35,8 +35,8 @@ def is_prime(n: int) -> bool:
     return True
 
 
-# Function that gets all substrings of a binary string and converts into decimal and finally checks if the number is prime.
-def binary_to__decimal(string: str) -> str:
+# Function that gets all substrings of a binary string and converts into decimal and finally checks if the number 'is_prime'.
+def binary_to__decimal(string: str, max_num: int) -> str:
     # Checks if the string is a valid binary string
     if not all(s in '01' for s in string):
         print("Invalid binary string")
@@ -69,8 +69,18 @@ def binary_to__decimal(string: str) -> str:
 
 # Main function that runs the functions
 if __name__ == '__main__':
+    
     # Takes a binary string from the user
+    #test_strings = ['0100001101001111', '01000011010011110100110101010000', '1111111111111111111111111111111111111111', '010000110100111101001101010100000011000100111000', 
+    #'01000011010011110100110101010000001100010011100000110001', '0100001101001111010011010101000000110001001110000011000100111001', '010000110100111101001101010100000011000100111000001100010011100100100001', 
+    #'01000011010011110100110101010000001100010011100000110001001110010010000101000001', '0100001101001111010011010101000000110001001110000011000100111001001000010100000101000100', 
+    #'010000110100111101001101010100000011000100111000001100010011100100100001010000010100010001010011', ]
+    
+    #max_nums = [999999, 999999, 999999, 999999999, 123456789012, 123456789012345, 123456789012345678, 1234567890123456789, 1234567890123456789, 12345678901234567890]
+    
+    #for string, max_num in zip(test_strings, max_nums):
+   
     string = input("Enter a binary string: ")
     # Takes the maximum cut off value for the prime numbers
     max_num = input ("Enter the maximum value prime number: ")
-    print(binary_to__decimal(string))
+    print(binary_to__decimal(string, max_num))
