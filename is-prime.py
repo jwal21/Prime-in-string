@@ -57,7 +57,7 @@ def binary_to__decimal(string: str, max_num: int) -> str:
 
         # Checks if the decimal value is prime AND if it has not already been added to the seen_prime set, then prints the decimal value
         if is_prime(decimal_value) and decimal_value not in seen_prime:
-            if decimal_value > (max_num):
+            if decimal_value > max_num:
                 break
             seen_prime.add(decimal_value)
 
