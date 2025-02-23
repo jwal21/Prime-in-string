@@ -1,23 +1,23 @@
 # Cache of numbers that have already been checked for primality
 # Dictionary (Hash Table)
-cached_nums: dict[int, bool] = {}
+cached_primes: dict[int, bool] = {}
 
 # Function that checks if a number is prime
 def is_prime(n: int) -> bool:
     
     # Checks if less than 2 as negative numbers, 0 and 1 are not prime
     if n < 2:
-        cached_nums[n] = False
+        cached_primes[n] = False
         return False
     
     # Checks if the number is 2 or 3 as these have no other factors
     if n in (2, 3):
-        cached_nums[n] = True
+        cached_primes[n] = True
         return True
     
     # Checks if even or divisible by 3
     if n % 2 == 0 or n % 3 == 0:
-        cached_nums[n] = False
+        cached_primes[n] = False
         return False
     
     # Check for divisibility by 6k +/- 1 as all primes
@@ -27,11 +27,11 @@ def is_prime(n: int) -> bool:
     while mod ** 2 <= n:
         # Checks divisibility one less and one more than a multiple of 6
         if n % mod  == 0 or n % (mod + 2) == 0:
-            cached_nums[n] = False
+            cached_primes[n] = False
             return False
         mod += 6
     
-    cached_nums[n] = True
+    cached_primes[n] = True
     return True
 
 
