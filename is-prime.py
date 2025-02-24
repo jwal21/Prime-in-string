@@ -4,7 +4,8 @@ cached_primes: dict[int, bool] = {}
 
 # Function that checks if a number is prime
 def is_prime(n: int) -> bool:
-    
+    if n in cached_primes:
+        return cached_primes[n]
     # Checks if less than 2 as negative numbers, 0 and 1 are not prime
     if n < 2:
         cached_primes[n] = False
