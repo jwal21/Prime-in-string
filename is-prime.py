@@ -7,7 +7,6 @@ from math import isqrt
 cached_nums: dict[int, bool] = {}
 
 def is_prime(n: int) -> bool:
-    
     if n in cached_nums:
         return cached_nums[n]
     if n < 2:
@@ -33,8 +32,9 @@ def is_prime(n: int) -> bool:
     return True
 
 
+# Function that gets all substrings of a binary string and converts into decimal and finally checks if the number 'is_prime'.
 def binary_to_decimal(string: str, max_num: int) -> str:
-    
+    # Checks if the string is a valid binary string
     if not all(s in '01' for s in string):
         return "Invalid binary string"
 
