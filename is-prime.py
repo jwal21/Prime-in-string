@@ -3,10 +3,12 @@
 import time
 from math import isqrt
 
-
+# Dictionary to store previously checked numbers
 cached_nums: dict[int, bool] = {}
 
+# Function that checks primality using the 6k ± 1 method
 def is_prime(n: int) -> bool:
+    # Check if the number is already in the cache
     if n in cached_nums:
         return cached_nums[n]
     if n < 2:
@@ -19,7 +21,7 @@ def is_prime(n: int) -> bool:
         cached_nums[n] = False
         return False
     
-    # Check divisibility using 6k ± 1 optimization
+    # Check primality using 6k ± 1 
     max_prime = isqrt(n)
     mod = 5
     while mod <= max_prime:
@@ -38,7 +40,9 @@ def binary_to_decimal(string: str, max_num: int) -> str:
     if not all(s in '01' for s in string):
         return "Invalid binary string"
 
+    # Set to store the prime numbers
     seen_primes: set[int] = set()
+    # Set to store the non-prime numbers
     processed_numbers: set[int] = set()
 
     # Optimized substring generation
@@ -55,6 +59,7 @@ def binary_to_decimal(string: str, max_num: int) -> str:
             if is_prime(decimal_value):
                 seen_primes.add(decimal_value)
 
+    # Sort the prime numbers into a list
     sorted_primes = sorted(seen_primes)
     count = len(sorted_primes)
 
@@ -64,7 +69,7 @@ def binary_to_decimal(string: str, max_num: int) -> str:
         return f"\nFor the binary string '{string}', the 3 smallest prime numbers are {sorted_primes[:3]} and the 3 largest prime numbers are {sorted_primes[-3:]}"
     
 
-# Main function that runs the functions
+# Main function that runs the functions in 10 test cases
 if __name__ == '__main__':
     test_strings = [
         '0100001101001111', '01000011010011110100110101010000', '1111111111111111111111111111111111111111', 
@@ -81,6 +86,7 @@ if __name__ == '__main__':
         123456789012345678, 1234567890123456789, 1234567890123456789, 12345678901234567890
     ]
     
+    # Runs the test cases and measures the run time
     start = time.time()
     for string, max_num in zip(test_strings, max_nums):
         print(binary_to_decimal(string, max_num))
