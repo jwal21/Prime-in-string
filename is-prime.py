@@ -4,20 +4,20 @@ import time
 from math import isqrt
 
 
-cached_primes: dict[int, bool] = {}
+cached_nums: dict[int, bool] = {}
 
 def is_prime(n: int) -> bool:
     
-    if n in cached_primes:
-        return cached_primes[n]
+    if n in cached_nums:
+        return cached_nums[n]
     if n < 2:
-        cached_primes[n] = False
+        cached_nums[n] = False
         return False
     if n in (2, 3):
-        cached_primes[n] = True
+        cached_nums[n] = True
         return True
     if n % 2 == 0 or n % 3 == 0:
-        cached_primes[n] = False
+        cached_nums[n] = False
         return False
     
     # Check divisibility using 6k ± 1 optimization
@@ -25,11 +25,11 @@ def is_prime(n: int) -> bool:
     mod = 5
     while mod <= max_prime:
         if n % mod == 0 or n % (mod + 2) == 0:
-            cached_primes[n] = False
+            cached_nums[n] = False
             return False
         mod += 6
     
-    cached_primes[n] = True
+    cached_nums[n] = True
     return True
 
 
