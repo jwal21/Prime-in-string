@@ -1,5 +1,3 @@
-# Cache of numbers that have already been checked for primality
-# Dictionary (Hash Table)
 import time
 from math import isqrt
 
@@ -24,7 +22,8 @@ def is_prime(n: int) -> bool:
         return False
     
     # Check primality using 6k ± 1 
-    max_prime = isqrt(n)       # isqrt will return the square root of n rounded down to the nearest integer
+    # isqrt will return the square root of n rounded down to the nearest integer
+    max_prime = isqrt(n)       
     mod = 5
     while mod <= max_prime:
         if n % mod == 0 or n % (mod + 2) == 0:
