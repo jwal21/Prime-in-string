@@ -97,4 +97,4 @@ if __name__ == "__main__":
         print(f"Time taken: {end - start:} seconds\n")
     
     end_total = time.time()
-    print(f"Total time taken: {end_total - start_total:.6f} seconds")
+    print(f"Total time taken: {end_total - start_total:} seconds")
